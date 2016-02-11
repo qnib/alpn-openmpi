@@ -7,7 +7,8 @@ RUN apk update && apk upgrade && \
     unzip -q /tmp/openmpi.zip && \ 
     cd /opt/ompi-master && \
     ./autogen.pl && \ 
-    sh ./configure && make -j4 && make install && \
+    sh ./configure --enable-orterun-prefix-by-default && \
+    make -j4 && make install && \
     apk del g++ make perl tar wget libgcrypt-dev libtool automake autoconf flex unzip && \
     rm -rf /var/cache/apk/*
 ADD hello_mpi.c /usr/local/src/
